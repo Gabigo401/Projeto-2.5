@@ -41,7 +41,7 @@ void SaqueCliente1(Cliente1 *cliente){   //a função acessa a struct cliente1 c
 		printf("Saldo insuficiente ou valor invalido.");
 	}
 	 }else {  //else que avisa se a senha estiver e errada
-		printf("Senha incorreta, operaï¿½ï¿½o cancelada.\n");
+		printf("Senha incorreta, operação cancelada.\n");
 	}
 }
 
@@ -62,7 +62,7 @@ void SaqueCliente2(Cliente2 *cliente, transacao historico[], int *total){
 		printf("Saldo insuficiente ou valor invalido.");
 	}
 	}else {
-		printf("Senha incorreta, operaï¿½ï¿½o cancelada.\n");
+		printf("Senha incorreta, operação cancelada.\n");
 	}
 }
 
