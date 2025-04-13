@@ -20,8 +20,11 @@ void ExibirExtrato(){
 
 }
 
-void DepositoCliente(){
-
+void DepositoCliente1(Cliente1 *cliente){
+    float valor;
+	__int64 senhaInput;
+	printf("Digite o valor do deposito desejado:\n");
+	scanf("%f", &valor);
 }
 
 void SaqueCliente(){
