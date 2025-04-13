@@ -25,6 +25,9 @@ void DepositoCliente1(Cliente1 *cliente){
 	__int64 senhaInput;
 	printf("Digite o valor do deposito desejado:\n");
 	scanf("%f", &valor);
+
+    printf("Digite a senha para validar o deposito:\n");
+	scanf("%lld", &senhaInput);
 }
 
 void SaqueCliente(){
