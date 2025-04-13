@@ -76,6 +76,15 @@ int main(){
     Cliente1 cliente1 = {"Luanda Soliz", 34567895734, 2344568, 500.00, 20.00, 100.00, 648.25};
     Cliente2 cliente2 = {"Lidia Mamani", 23498745690, 2356235, 300.00, 26.00, 487.00, 654.00};
 
+    __int64 cpfInput, senhaInput;
+    int logado = 0;
+    int ClienteAtual =0;
+    printf("Bem vindo! Faca o login para continuar.\n");
+    printf("Digite o CPF:\n");
+    scanf("%lld", &cpfInput);
+    printf("Digite a senha:\n");
+    scanf("%lld",  &senhaInput);
+
 
 
     
