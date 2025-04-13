@@ -95,9 +95,58 @@ int main(){
 		logado = 1;
 		ClienteAtual = 2;
 	}
-
-
-
     
+    if (logado){
+		int opcao;
+		do{
+			ExibirMenu();
+			scanf("%d", &opcao);
+			
+			switch(opcao){
+				case 1:
+					if(ClienteAtual == 1){
+					}else{
+				}
+					break;
+				case 2:
+					if(ClienteAtual == 1){
+					}else{
+				}
+					break;
+				case 3:
+					if(ClienteAtual == 1){
+					}else{
+				}
+					break;
+				case 4:
+					if(ClienteAtual == 1){
+					}else{
+				}
+					break;
+				case 5:
+					if(ClienteAtual ==1){
+					}else{
+				}
+					break;
+				case 6:
+					if(ClienteAtual == 1){
+					}else{
+				}
+					break;
+				case 7:
+					{
+				}
+					break;
+				case 0:
+					printf("Saindo do programa:\n");
+					break;
+				default:
+					printf("Opção invalida,  tente outra opção:\n");
+					
+			}
+		}while (opcao != 0);
+	}else{
+		printf("Cpf ou senha incorretos.\n");
+	}
     return 0;
 }
