@@ -85,6 +85,17 @@ int main(){
     printf("Digite a senha:\n");
     scanf("%lld",  &senhaInput);
 
+    if(cpfInput == cliente1.cpf && senhaInput == cliente1.senha){
+    	printf("\nLogin foi feito com sucesso!, %s.\n", cliente1.nome);
+		logado = 1;
+		ClienteAtual = 1;
+	}
+	else if(cpfInput == cliente2.cpf && senhaInput == cliente2.senha){
+		printf("\nLogin foi feito com sucesso!, %s.\n", cliente2.nome);
+		logado = 1;
+		ClienteAtual = 2;
+	}
+
 
 
     
