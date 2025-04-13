@@ -45,6 +45,27 @@ void SaqueCliente1(Cliente1 *cliente){   //a função acessa a struct cliente1 c
 	}
 }
 
+void SaqueCliente2(Cliente2 *cliente, transacao historico[], int *total){
+	float valor;
+	__int64 senhaInput;
+	printf("Digite o valor do saque desejado: \n");
+	scanf("%f", &valor);
+	
+	printf("Digite a senha para validar o saque:\n");
+	scanf("%lld", &senhaInput);
+	
+	if(senhaInput == cliente ->senha){
+        if(valor > 0 && valor <= cliente -> reais){
+		cliente ->reais -= valor;
+		printf("Saque feito com sucesso!. Saldo atual R$ %.2f\n", cliente -> reais);
+	}else {
+		printf("Saldo insuficiente ou valor invalido.");
+	}
+	}else {
+		printf("Senha incorreta, operaï¿½ï¿½o cancelada.\n");
+	}
+}
+
 void CompraCriptoCliente(){
 
 }
