@@ -8,8 +8,20 @@ void ExibirMenu(){
 
 }
 
-void Carteira(){
+void Carteira1(Cliente1 cliente){
+    printf("\n carteira de %s\n", cliente.nome);
+	printf("Reais: R$ %.2f\n", cliente.reais);
+	printf("Bitcoins: %.2f\n", cliente.bitcoin);
+	printf("Etherium: %.2f\n", cliente.etherium);
+	printf("Ripple: %.2f\n", cliente.ripple);
+}
 
+void Carteira2(Cliente2 cliente){
+    printf("\n carteira de %s\n", cliente.nome);
+	printf("Reais: R$ %.2f\n", cliente.reais);
+	printf("Bitcoins: %.2f\n", cliente.bitcoin);
+	printf("Etherium: %.2f\n", cliente.etherium);
+	printf("Ripple: %.2f\n", cliente.ripple);
 }
 
 void RegistrarTransacao(){
