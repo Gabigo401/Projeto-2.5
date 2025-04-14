@@ -90,6 +90,12 @@ void CompraCriptoCliente(Cliente1 *cliente){
 			    printf("Valor gasto: R$ %.2f\n", valor);  //o valor gasto pela compra do ripple, o valor gasto ja foi somado com a taxa de compra do ripple
 			    printf("Taxa cobrada: %.0f%%\n", tax_compra_rpl*100);  //aparece a taxa de compra do ripple
 		    }
+		}else {
+			printf("Valor e  invalido ou saldo insuficiente.\n");  //else falando se o valor escolhido pela comprae invalido se for menor que 0 ou se o saldo e insuficiente se for maior que o valor que esta armazenado na struct do cliente
+		}
+	}else {    //else falando que a senha digitada pelo usuario esta incorreta da senha que esta na struct do cliente 
+			printf("Senha incorreta, operação cancelada.\n");
+	}
 	
 }
 
