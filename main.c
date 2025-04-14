@@ -93,6 +93,27 @@ void VendaCriptoCliente1(Cliente1 *cliente){
 			default:
 				printf("Criptomoeda invalida.\n"); //aparece isso se a moeda escolhida não esta cadastrada
 		}
+		if(escolher == 1){  //if da variavel escolha  que mostra um resumo da operação dependendo da moeda escolhida
+            printf("Venda realizada com sucesso!\n");
+            printf("Quantidade vendida: %.2f Bitcoins\n", quantos_iniciais);  //mostra a  quantidade vendida se for bitcoin
+            printf("Valor recebido: R$ %.2f\n", valor_recebido);   //mostra o valor recebido pela venda da moeda
+            printf("Taxa cobrada: %.0f%%\n", tax_venda_bit * 100);  //mostra a taxa que foi cobrada pela venda
+		}
+		else if(escolher == 2){  //if se a escolha for 2
+			printf("Venda feita com sucesso!\n");
+            printf("Quantidade vendida: %.2f Ethereum\n", quantos_iniciais);  //mostra a quantidade venda
+            printf("Valor recebido: R$ %.2f\n", valor_recebido);  //mostra o valor recebido pela venda
+            printf("Taxa cobrada: %.0f%%\n", tax_venda_ethe * 100); //mostra a taxa de venda da moeda
+        }
+		else if(escolher == 3){ 
+			printf("Venda feita com sucesso!\n");
+            printf("Quantidade vendida: %.2f Ripple\n", quantos_iniciais);  //mostra a quantidade escolhida para venda
+            printf("Valor recebido: R$ %.2f\n", valor_recebido);  //mostra o valor recebido pela venda
+            printf("Taxa cobrada: %.0f%%\n", tax_venda_rpl * 100);  //mostra a taxa de venda da moeda
+		}
+	}else {  //else que se mostra se a senha inserida pelo usuario esta errada
+		printf("Senha incorreta, operaï¿½ï¿½o cancelada.\n");
+	}
 }
 
 void atl_cot_cripto(){
