@@ -112,7 +112,91 @@ void VendaCriptoCliente1(Cliente1 *cliente){
             printf("Taxa cobrada: %.0f%%\n", tax_venda_rpl * 100);  //mostra a taxa de venda da moeda
 		}
 	}else {  //else que se mostra se a senha inserida pelo usuario esta errada
-		printf("Senha incorreta, operaï¿½ï¿½o cancelada.\n");
+		printf("Senha incorreta, operação cancelada.\n");
+	}
+}
+
+void VendaCriptoCliente2(Cliente2 *cliente){
+	char confirmacao;   
+	float tax_venda_bit = 0.03;   
+	float tax_venda_ethe = 0.02;  
+	float tax_venda_rpl = 0.01;   
+	float quantos, quantos_iniciais, valor_recebido;   
+	__int64 senhaInput;    
+	int escolher;   
+	printf("\n Escolha a criptomoeda para vender:\n");
+	printf("1- Bitcoin\n");
+	printf("2- Etherium\n");
+	printf("3- Ripple\n");
+	scanf("%d", &escolher); 
+
+	printf("Digite a quantidade desejada para vender: \n");
+	scanf("%f", &quantos);  
+	
+	printf("Digite a senha para validar a operação:\n");
+	scanf("%lld", &senhaInput);  
+	
+	if(senhaInput == cliente ->senha){  
+        printf("Voce deseja confirmar a compra? (S/N): ");
+        scanf(" %c", &confirmacao);  
+
+        if(confirmacao != 'S' && confirmacao != 's') {  
+            printf("Compra cancelada.\n");
+            return;
+        }
+		switch(escolher) {  
+			case 1:
+				if(quantos <= cliente ->bitcoin){  
+					quantos_iniciais = quantos;    
+					quantos = quantos-(quantos * tax_venda_bit);    
+					valor_recebido = quantos * criptos[0].cotacao;  
+					cliente ->bitcoin -= quantos;   
+					cliente ->reais += quantos * criptos[0].cotacao; 
+				}else printf("Quantidade desejada e insuficiente.\n"); 
+				break;
+			case 2:
+				if(quantos <= cliente ->etherium){   
+					quantos_iniciais = quantos; 
+					quantos = quantos-(quantos * tax_venda_ethe);  
+					valor_recebido = quantos * criptos[1].cotacao; 
+					cliente ->etherium -= quantos;  
+					cliente ->reais += quantos * criptos[1].cotacao; 
+					
+				}else printf("Quantidade desejada e insuficiente.\n");
+				break;
+			case 3:
+				if(quantos <= cliente ->ripple){ 
+					quantos_iniciais = quantos; 
+					quantos = quantos-(quantos * tax_venda_rpl);   
+					valor_recebido = quantos * criptos[2].cotacao;   
+					cliente ->ripple -= quantos;  
+					cliente ->reais += quantos * criptos[2].cotacao;   
+					
+				}else printf("Quantidade desejada e insuficiente.\n"); 
+				break;
+			default:
+				printf("Criptomoeda invalida.\n"); 
+		}
+		if(escolher == 1){  
+            printf("Venda realizada com sucesso!\n");
+            printf("Quantidade vendida: %.2f Bitcoins\n", quantos_iniciais);  
+            printf("Valor recebido: R$ %.2f\n", valor_recebido);   
+            printf("Taxa cobrada: %.0f%%\n", tax_venda_bit * 100); 
+		}
+		else if(escolher == 2){  
+			printf("Venda feita com sucesso!\n");
+            printf("Quantidade vendida: %.2f Ethereum\n", quantos_iniciais);  
+            printf("Valor recebido: R$ %.2f\n", valor_recebido); 
+            printf("Taxa cobrada: %.0f%%\n", tax_venda_ethe * 100); 
+        }
+		else if(escolher == 3){ 
+			printf("Venda feita com sucesso!\n");
+            printf("Quantidade vendida: %.2f Ripple\n", quantos_iniciais); 
+            printf("Valor recebido: R$ %.2f\n", valor_recebido); 
+            printf("Taxa cobrada: %.0f%%\n", tax_venda_rpl * 100); 
+		}
+	}else {  
+		printf("Senha incorreta, operação cancelada.\n");
 	}
 }
 
