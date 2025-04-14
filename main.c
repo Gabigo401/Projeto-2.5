@@ -47,6 +47,15 @@ void CompraCriptoCliente(Cliente1 *cliente){
 	
 	printf("Digite a senha para validar a compra:\n");
 	scanf("%lld", &senhaInput);  //scanf que recebe a senha digitada pelo usuario e guarda no endereço da variavel senha
+
+	if(senhaInput == cliente ->senha){  //verifica se a  senha e igual a senha da struct cliente1 se for igual ele continua o programa
+	    printf("Voce deseja confirmar a compra? (S/N): ");
+        scanf(" %c", &confirmacao);  //scanf que recebe e armazena a resposta do usuario  se ele deseja confirmar a compra ou não
+
+        if(confirmacao != 'S' && confirmacao != 's') {     //if que verifica se a resposta do usuario, se for sim a operação e feita e o programa volta pro menu mas se for não ele cancela a operação e volta pro menu
+            printf("Compra cancelada.\n");
+            return;    //return pro menu se a compra for cancelada
+        }
 	
 }
 
