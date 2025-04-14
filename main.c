@@ -28,7 +28,7 @@ void SaqueCliente(){
 
 }
 
-void CompraCriptoCliente(Cliente1 *cliente){
+void CompraCriptoCliente1(Cliente1 *cliente){
     char confirmacao;   //char que vai receber a confirmação do usuario
 	float tax_compra_bit = 0.02;   //float que guarda a taxa de compra do bitcoin
 	float tax_compra_ethe = 0.01;  //float que guarda a taxa de compra de etherium
@@ -94,6 +94,77 @@ void CompraCriptoCliente(Cliente1 *cliente){
 			printf("Valor e  invalido ou saldo insuficiente.\n");  //else falando se o valor escolhido pela comprae invalido se for menor que 0 ou se o saldo e insuficiente se for maior que o valor que esta armazenado na struct do cliente
 		}
 	}else {    //else falando que a senha digitada pelo usuario esta incorreta da senha que esta na struct do cliente 
+			printf("Senha incorreta, operação cancelada.\n");
+	}
+	
+}
+
+void CompraCriptoCliente2(Cliente2 *cliente){
+    char confirmacao;   
+	float tax_compra_bit = 0.02;   
+	float tax_compra_ethe = 0.01;  
+	float tax_compra_rpl = 0.01;  
+	__int64 senhaInput;  
+	int escolher; 
+	float valor;  
+	printf("\n Escolha a criptomoeda que deseja comprar:\n"); 
+	printf("1 - Bitcoins:\n");
+	printf("2 - Ethereum:\n");
+	printf("3 - Ripple:\n");
+	scanf("%d", &escolher);  
+	
+	printf("Digite o  valor que deseja gastar na compra: \n");
+	scanf("%f", &valor); 
+	
+	printf("Digite a senha para validar a compra:\n");
+	scanf("%lld", &senhaInput); 
+
+	if(senhaInput == cliente ->senha){  
+	    printf("Voce deseja confirmar a compra? (S/N): ");
+        scanf(" %c", &confirmacao);  
+
+        if(confirmacao != 'S' && confirmacao != 's') {     
+            printf("Compra cancelada.\n");
+            return;  
+        }
+		if(valor > 0 && valor <= cliente->reais){    
+			switch(escolher){   
+				case 1:  
+					valor = valor +(valor * tax_compra_bit);  
+					cliente ->bitcoin  += valor/criptos[0].cotacao;   
+					break;  
+				case 2:
+					valor = valor +(valor * tax_compra_ethe); 
+					cliente ->etherium += valor/criptos[1].cotacao;  
+					break; 
+				case 3:
+					valor = valor +(valor* tax_compra_rpl);   
+					cliente ->ripple += valor/criptos[2].cotacao; 
+					break; 
+				default:     
+					printf("Criptomoeda não encontrada.\n");
+					return;
+			}
+			cliente ->reais -= valor; 
+		    if(escolher == 1){  
+                printf("Compra realizada com sucesso!\n");  
+                printf("Valor gasto: R$ %.2f\n", valor);   
+                printf("Taxa cobrada: %.0f%%\n", tax_compra_bit*100);  
+		   }
+		    else if(escolher == 2){  
+			    printf("Compra realizada com sucesso!\n"); 
+			    printf("Valor gasto: R$ %.2f\n", valor);   
+			    printf("Taxa cobrada: %.0f%%\n", tax_compra_ethe*100);   
+		    }
+		    else if(escolher == 3){  
+			    printf("Compra realizada com sucesso!\n");   
+			    printf("Valor gasto: R$ %.2f\n", valor); 
+			    printf("Taxa cobrada: %.0f%%\n", tax_compra_rpl*100);  
+		    }
+		}else {
+			printf("Valor e  invalido ou saldo insuficiente.\n");  
+		}
+	}else {   
 			printf("Senha incorreta, operação cancelada.\n");
 	}
 	
