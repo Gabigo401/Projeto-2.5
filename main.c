@@ -45,6 +45,21 @@ void VendaCriptoCliente1(Cliente1 *cliente){
 	printf("2- Etherium\n");
 	printf("3- Ripple\n");
 	scanf("%d", &escolher);  //guarda o numero escolhido na variavel escolher
+
+	printf("Digite a quantidade desejada para vender: \n");
+	scanf("%f", &quantos);  //armazena o valor de criptomoedas que foi escolhida para vendas na variavel quantos
+	
+	printf("Digite a senha para validar a operação:\n");
+	scanf("%lld", &senhaInput);   //armazena a senha digitada para validar e continuar a compra
+	
+	if(senhaInput == cliente ->senha){  //compara a senha digitada com a senha que esta armazenada na struct do cliente
+        printf("Voce deseja confirmar a compra? (S/N): ");
+        scanf(" %c", &confirmacao);   //pede a confirmação do usuario para finalizar a transação
+
+        if(confirmacao != 'S' && confirmacao != 's') {   // se o pedido de confirmação for positivo a transação e concluida e aparece o resumo, se for negativa a operação e cancelada e volta pro menu do programa
+            printf("Compra cancelada.\n");
+            return;
+        }
 }
 
 void atl_cot_cripto(){
