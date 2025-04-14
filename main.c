@@ -56,6 +56,24 @@ void CompraCriptoCliente(Cliente1 *cliente){
             printf("Compra cancelada.\n");
             return;    //return pro menu se a compra for cancelada
         }
+		if(valor > 0 && valor <= cliente->reais){    //verifica se o valor digitado e maior que zero e se ele e menor que o dinheiro armazena na struct do cliente
+			switch(escolher){   //switch case para a variavel de escolher, ela so e apresenta se todos os ifs anteriores forem passado
+				case 1:  //se a opção for 1
+					valor = valor +(valor * tax_compra_bit);   //atualiza a variavel 'valor', fazendo a multiplicação dela com a taxa do bitcoin e somando com o valor digitado inicialmente
+					cliente ->bitcoin  += valor/criptos[0].cotacao;   //atualiza a struct do cliente aonde esta armazenado os valores do bitcoin e soma esses valores com o valor gasto na compra que foi divido com o valor da cotação do bitcoin
+					break;  //apos a operação sai dessa opção e vai pro resumo
+				case 2:
+					valor = valor +(valor * tax_compra_ethe);  //atualiza o valor gasto fazendo uma soma do valor gasto mais o valor vezes a taxa de compra do etherium
+					cliente ->etherium += valor/criptos[1].cotacao;  //atualiza a struct do cliente somando os valores de etherium ja armazenados com o valor recebido de etherium apos a compra, aonde o valor gasto e dividio pela cotação do etherium
+					break;  //sai do switch
+				case 3:
+					valor = valor +(valor* tax_compra_rpl);   //atualiza a variavel valor fazendo a multiplicação dela com a taxa do ripple e somando com o valor digitado
+					cliente ->ripple += valor/criptos[2].cotacao; //atualiza a struct do cliente e soma os valores de ripple guardados com os valores de variavel 'valor' que foi dividia pela cotação do ripple
+					break; //sai do switch
+				default:     //se for alguma outra opção alem dessas 3 fala que a moeda não existe e sai do programa
+					printf("Criptomoeda não encontrada.\n");
+					return;
+			}
 	
 }
 
