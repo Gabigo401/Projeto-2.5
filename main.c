@@ -74,6 +74,22 @@ void CompraCriptoCliente(Cliente1 *cliente){
 					printf("Criptomoeda não encontrada.\n");
 					return;
 			}
+			cliente ->reais -= valor; //aqui diminuimos o valor de reais que esta armazenado na struct do cliente subtraindo pela variavel de valor que ja foi somada com a taxa de compra da moeda escolhida
+		    if(escolher == 1){  //aqui pegamos o numero que foi escolhido entre as 3 opções de moedas, se foi 1 aparece um resumo dessa transação apresentando alguns valores
+                printf("Compra realizada com sucesso!\n");  //mensagem de exito
+                printf("Valor gasto: R$ %.2f\n", valor);   //aparece o valor que foi gasto, o valor que aparece ja foi somado com o valor da taxa de compra do bitcoin
+                printf("Taxa cobrada: %.0f%%\n", tax_compra_bit*100);  //aqui aparece a taxa cobrada pela compra do bitcoin
+		   }
+		    else if(escolher == 2){  // se o numero escolhido for 2 aparece esse resumo
+			    printf("Compra realizada com sucesso!\n"); 
+			    printf("Valor gasto: R$ %.2f\n", valor);   //o valor gasto pela compra do etherium que ja foi somado com a taxa de compra do etherium
+			    printf("Taxa cobrada: %.0f%%\n", tax_compra_ethe*100);   //a taxa que se cobra ao comprar o etherium
+		    }
+		    else if(escolher == 3){  //se o numero escolhido e  3 aparece esse resumo
+			    printf("Compra realizada com sucesso!\n");   
+			    printf("Valor gasto: R$ %.2f\n", valor);  //o valor gasto pela compra do ripple, o valor gasto ja foi somado com a taxa de compra do ripple
+			    printf("Taxa cobrada: %.0f%%\n", tax_compra_rpl*100);  //aparece a taxa de compra do ripple
+		    }
 	
 }
 
