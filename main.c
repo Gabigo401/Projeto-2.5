@@ -109,7 +109,7 @@ int main(){
 					   escreveArquivo("cliente1.txt", &cliente1, criptos, 3, historico_transacoes1, total_transacoes1);  //chamando a função de escreverarquivo para escrever  tudo em um txt
 					}else{
 						Carteira2(cliente2);  //se for o cliente2 esse e chamado
-					   escreveArquivo2("cliente2.txt", &cliente2);  //salvando em outro txt o do cliente2
+					   escreveArquivo2("cliente2.txt", &cliente2, criptos, 3, historico_transacoes1, total_transacoes1);  //salvando em outro txt o do cliente2
 				}
 					break;
 				case 2:
@@ -117,30 +117,36 @@ int main(){
 						ExibirExtrato(historico_transacoes1, total_transacoes1);  //exibindo o extrato do cliente1
 					   escreveArquivo("cliente1.txt", &cliente1, criptos, 3, historico_transacoes1, total_transacoes1);  //escrevendo no txt o extrato
 					}else{
+						ExibirExtrato(historico_transacoes2, total_transacoes2);
+						escreveArquivo2("cliente2.txt", &cliente2, criptos, 3, historico_transacoes1, total_transacoes1);
 				}
 					break;
 				case 3:
 					if(ClienteAtual == 1){
 						DepositoCliente1(&cliente1, historico_transacoes1, &total_transacoes1);  //chamando a função de deposito do cliente1
 					}else{
+						DepositoCliente2(&cliente2, historico_transacoes2, &total_transacoes2);
 				}
 					break;
 				case 4:
 					if(ClienteAtual == 1){
 						SaqueCliente1(&cliente1, historico_transacoes1, &total_transacoes1);  //chamando a função para o saque do cliente1
 					}else{
+						SaqueCliente2(&cliente2, historico_transacoes2, &total_transacoes2);
 				}
 					break;
 				case 5:
 					if(ClienteAtual ==1){
 						CompraCriptoCliente1(&cliente1, criptos, historico_transacoes1, &total_transacoes1);  //chamando a função para comprar as criptomoedas
 					}else{
+						CompraCriptoCliente2(&cliente2, criptos, historico_transacoes2, &total_transacoes2);
 				}
 					break;
 				case 6:
 					if(ClienteAtual == 1){
 						VendaCriptoCliente1(&cliente1, criptos, historico_transacoes1, &total_transacoes1);  //chamando a funções de vender as criptomoedas
 					}else{
+						VendaCriptoCliente2(&cliente2, criptos, historico_transacoes2, &total_transacoes2);
 				}
 					break;
 				case 7:
