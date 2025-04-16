@@ -50,6 +50,13 @@ void escreveArquivo(const char *nome_arquivo, Cliente1 *cliente, Cripto criptos[
         perror("Erro ao abrir o arquivo");  //mensagem se ocorre um erro na abertura
         return;
     }
+    fprintf(arquivo, "%s\n", cliente->nome);  //fprint para salvar o nome do cliente
+    fprintf(arquivo, "%lld\n", cliente->cpf);  //fprtinf para salvar o cpf
+    fprintf(arquivo, "%lld\n", cliente->senha); //fprint para salvar a senha do usuario
+    fprintf(arquivo, "%lf\n", cliente->reais);  //fprint para salvar o saldo em reais
+    fprintf(arquivo, "%lf\n", cliente->bitcoin);  //para salvar os bitcoins que o usuario tem
+    fprintf(arquivo, "%lf\n", cliente->etherium); //salva os etherium que o usuario tem
+    fprintf(arquivo, "%lf\n", cliente->ripple);  //salva os ripples que o cliente tem
 }
 
 void leArquivo(){
