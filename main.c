@@ -33,7 +33,7 @@ void CompraCriptoCliente1(Cliente1 *cliente, Cripto criptos[], transacao histori
 	float tax_compra_bit = 0.02;   //float que guarda a taxa de compra do bitcoin
 	float tax_compra_ethe = 0.01;  //float que guarda a taxa de compra de etherium
 	float tax_compra_rpl = 0.01;  //float que guarda a taxa de compra de ripple
-	__int64 senhaInput;  //int que guarda a senha recebida
+	long long senhaInput;  //long long que guarda a senha recebida
 	int escolher;  //int que guarda o numero da opção que foi escolhida pelo usuario entre as três moedas
 	float valor;   //float que guarda o valor digitado pelo usuario de quantos reais ele quer gastar na compra
 	printf("\n Escolha a criptomoeda que deseja comprar:\n");  //apresentação das 3 criptomoedas e o numero de suas opções
@@ -65,12 +65,12 @@ void CompraCriptoCliente1(Cliente1 *cliente, Cripto criptos[], transacao histori
 					break;  //apos a operação sai dessa opção e vai pro resumo
 				case 2:
 					valor = valor +(valor * tax_compra_ethe);  //atualiza o valor gasto fazendo uma soma do valor gasto mais o valor vezes a taxa de compra do etherium
-					RegistrarTransacao(historico, total, "Compra", "Bitcoin", valor);  //chamando a função para guardar as transações
+					RegistrarTransacao(historico, total, "Compra", "Etherium", valor);  //chamando a função para guardar as transações
 					cliente ->etherium += valor/criptos[1].cotacao;  //atualiza a struct do cliente somando os valores de etherium ja armazenados com o valor recebido de etherium apos a compra, aonde o valor gasto e dividio pela cotação do etherium
 					break;  //sai do switch
 				case 3:
 					valor = valor +(valor* tax_compra_rpl);   //atualiza a variavel valor fazendo a multiplicação dela com a taxa do ripple e somando com o valor digitado
-					RegistrarTransacao(historico, total, "Compra", "Bitcoin", valor);  //chamando a função para armazenar as transações
+					RegistrarTransacao(historico, total, "Compra", "Ripple", valor);  //chamando a função para armazenar as transações
 					cliente ->ripple += valor/criptos[2].cotacao; //atualiza a struct do cliente e soma os valores de ripple guardados com os valores de variavel 'valor' que foi dividia pela cotação do ripple
 					break; //sai do switch
 				default:     //se for alguma outra opção alem dessas 3 fala que a moeda não existe e sai do programa
@@ -99,7 +99,6 @@ void CompraCriptoCliente1(Cliente1 *cliente, Cripto criptos[], transacao histori
 	}else {    //else falando que a senha digitada pelo usuario esta incorreta da senha que esta na struct do cliente 
 			printf("Senha incorreta, operação cancelada.\n");
 	}
-	
 }
 
 void CompraCriptoCliente2(Cliente2 *cliente, Cripto criptos[], transacao historico[], int *total){
@@ -107,7 +106,7 @@ void CompraCriptoCliente2(Cliente2 *cliente, Cripto criptos[], transacao histori
 	float tax_compra_bit = 0.02;   
 	float tax_compra_ethe = 0.01;  
 	float tax_compra_rpl = 0.01;  
-	__int64 senhaInput;  
+	long long senhaInput;  
 	int escolher; 
 	float valor;  
 	printf("\n Escolha a criptomoeda que deseja comprar:\n"); 
@@ -134,18 +133,18 @@ void CompraCriptoCliente2(Cliente2 *cliente, Cripto criptos[], transacao histori
 			switch(escolher){   
 				case 1:  
 					valor = valor +(valor * tax_compra_bit);  
-					RegistrarTransacao(historico, total, "Compra", "Bitcoin", valor);
 					cliente ->bitcoin  += valor/criptos[0].cotacao;   
+					RegistrarTransacao(historico, total, "Compra", "Bitcoin", valor);
 					break;  
 				case 2:
 					valor = valor +(valor * tax_compra_ethe); 
-					RegistrarTransacao(historico, total, "Compra", "Bitcoin", valor);
-					cliente ->etherium += valor/criptos[1].cotacao;  
+					cliente ->etherium += valor/criptos[1].cotacao; 
+					RegistrarTransacao(historico, total, "Compra", "Etherium", valor); 
 					break; 
 				case 3:
 					valor = valor +(valor* tax_compra_rpl);   
-					RegistrarTransacao(historico, total, "Compra", "Bitcoin", valor);
 					cliente ->ripple += valor/criptos[2].cotacao; 
+					RegistrarTransacao(historico, total, "Compra", "Ripple", valor);
 					break; 
 				default:     
 					printf("Criptomoeda não encontrada.\n");
