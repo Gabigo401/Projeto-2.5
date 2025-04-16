@@ -57,6 +57,12 @@ void escreveArquivo(const char *nome_arquivo, Cliente1 *cliente, Cripto criptos[
     fprintf(arquivo, "%lf\n", cliente->bitcoin);  //para salvar os bitcoins que o usuario tem
     fprintf(arquivo, "%lf\n", cliente->etherium); //salva os etherium que o usuario tem
     fprintf(arquivo, "%lf\n", cliente->ripple);  //salva os ripples que o cliente tem
+
+    fprintf(arquivo, "--- COTAÇÕES ATUAIS ---\n");  //aqui eu salvo as cotações  das moedas que o usuario for atualizando ao usar a opção 7
+    int i;   //crio um int chamado i
+    for ( i = 0; i < qtdCriptos; i++) {   //uso um for para usar o i para ler as linhas da do vetor de cripto
+        fprintf(arquivo, "%s: %.4f\n", criptos[i].nome, criptos[i].cotacao); //aqui eu salvo as cotações atualizados da struct cripto como nome e a cotação e salvo a das 3 moedas sempre que ela foir atualizado
+    }
 }
 
 void leArquivo(){
