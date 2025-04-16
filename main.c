@@ -26,7 +26,7 @@ void DepositoCliente(){
 
 void SaqueCliente1(Cliente1 *cliente, transacao historico[], int *total){   //a função acessa a struct cliente1 como um ponteiro // chamando a struct de transacao para guardar nelas as operações
     float valor;  //variavel float chamado valor que recebe o valor digitado
-	__int64 senhaInput;  //variavel int que recebe a senha digitada
+	long long senhaInput;  //variavel long long que recebe a senha digitada
 	printf("Digite o valor do saque desejado:\n");
 	scanf("%f", &valor);  //scanf que le e armazena na variavel de valor o valor digitado
 	
@@ -48,7 +48,7 @@ void SaqueCliente1(Cliente1 *cliente, transacao historico[], int *total){   //a 
 
 void SaqueCliente2(Cliente2 *cliente, transacao historico[], int *total){
 	float valor;
-	__int64 senhaInput;
+	long long senhaInput;
 	printf("Digite o valor do saque desejado: \n");
 	scanf("%f", &valor);
 	
