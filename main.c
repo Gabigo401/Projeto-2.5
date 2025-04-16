@@ -22,7 +22,7 @@ void ExibirExtrato(){
 
 void DepositoCliente1(Cliente1 *cliente, transacao historico[], int *total){  //ao fazer a função dentro do parenteses eu chamo a struct Cliente1 e o *cliente eu to pegando os valores dentro dessa struct e podendo modificalas usando um ponteiro// chamando a struct de transações para guardar nelas
     float valor;    //variavel float chamada valor para armazenar os valores recebidos
-	__int64 senhaInput;  //variavel int com nome de senhaInput
+	long long senhaInput;  //variavel long long com nome de senhaInput
 	printf("Digite o valor do deposito desejado:\n");
 	scanf("%f", &valor);  //scanf que le o valor digitado e armazena no endereço da variavel valor atraves do &
 
@@ -44,7 +44,7 @@ void DepositoCliente1(Cliente1 *cliente, transacao historico[], int *total){  //
 
 void DepositoCliente2(Cliente2 *cliente, transacao historico[], int *total){  
     float valor;    
-	__int64 senhaInput;  
+	long long senhaInput;  
 	printf("Digite o valor do deposito desejado:\n");
 	scanf("%f", &valor);  
 
