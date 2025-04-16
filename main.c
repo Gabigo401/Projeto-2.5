@@ -5,8 +5,8 @@
 
 typedef struct {   //struct pro cliente1
     char nome[100]; 
-    __int64 cpf;
-    __int64 senha;
+    long long cpf;   //long long para armazenar o numero de cpf
+    long long senha;
     float reais;
     float bitcoin;
     float etherium;
@@ -15,8 +15,8 @@ typedef struct {   //struct pro cliente1
 
 typedef struct{  //struct pro cliente2
     char nome[100];
-    __int64 cpf;
-    __int64 senha;
+    long long cpf; 
+    long long senha;
     float reais; 
     float bitcoin;
     float etherium;
@@ -76,7 +76,8 @@ int main(){
     Cliente1 cliente1 = {"Luanda Soliz", 34567895734, 2344568, 500.00, 20.00, 100.00, 648.25};  //adicionando informações no cliente1
     Cliente2 cliente2 = {"Lidia Mamani", 23498745690, 2356235, 300.00, 26.00, 487.00, 654.00};  //e no cliente2
 
-    __int64 cpfInput, senhaInput;   //criando duas variaveis para senha e cpf
+    long long cpfInput;
+	long long senhaInput;  //criando duas variaveis para senha e cpf
     int logado = 0;   //int chamada logad
     int ClienteAtual =0;  //int para saber qual cliente acessou
     printf("Bem vindo! Faca o login para continuar.\n");
@@ -87,15 +88,17 @@ int main(){
 
     if(cpfInput == cliente1.cpf && senhaInput == cliente1.senha){  //if para comprar o cpf digitado com o cpf do cliente e comparando a senha tambem
     	printf("\nLogin foi feito com sucesso!, %s.\n", cliente1.nome);
+		printf("Lendo arquivo de cliente...\n");
+        leArquivo("cliente1.txt", &cliente1, historico_transacoes1, &total_transacoes1);  //adicionando a chama da função para ler o arquivo txt
 		logado = 1;  //se o login funcionoi a variavel logado vira 1 para mostrar que alguem esta logado
 		ClienteAtual = 1;  //a variavel clienteatual muda para 1 para mostrar que e o cliente1
 	}
 	else if(cpfInput == cliente2.cpf && senhaInput == cliente2.senha){  //comparando se condiz com o cpf ou senha do outro cliente
 		printf("\nLogin foi feito com sucesso!, %s.\n", cliente2.nome);
+		leArquivo2("cliente2.txt", &cliente2, historico_transacoes2, &total_transacoes2);  //chamada para abrir o arquivo txt
 		logado = 1;  //muda para 1 se alguem logou
 		ClienteAtual = 2;  //muda para 2 mostrando que e o cliente2 logado
 	}
-    
     if (logado){
 		int opcao;
 		do{
