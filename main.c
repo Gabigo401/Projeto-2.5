@@ -109,7 +109,7 @@ int main(){
 					   escreveArquivo("cliente1.txt", &cliente1, criptos, 3, historico_transacoes1, total_transacoes1);  //chamando a função de escreverarquivo para escrever  tudo em um txt
 					}else{
 						Carteira2(cliente2);  //se for o cliente2 esse e chamado
-					   escreveArquivo2("cliente2.txt", &cliente2, criptos, 3, historico_transacoes1, total_transacoes1);  //salvando em outro txt o do cliente2
+                        escreveArquivo2("cliente2.txt", &cliente2, criptos, 3, historico_transacoes2, total_transacoes2);  //salvando em outro txt o do cliente2
 				}
 					break;
 				case 2:
@@ -118,7 +118,7 @@ int main(){
 					   escreveArquivo("cliente1.txt", &cliente1, criptos, 3, historico_transacoes1, total_transacoes1);  //escrevendo no txt o extrato
 					}else{
 						ExibirExtrato(historico_transacoes2, total_transacoes2);
-						escreveArquivo2("cliente2.txt", &cliente2, criptos, 3, historico_transacoes1, total_transacoes1);
+						escreveArquivo2("cliente2.txt", &cliente2, criptos, 3, historico_transacoes2, total_transacoes2);
 				}
 					break;
 				case 3:
@@ -154,6 +154,7 @@ int main(){
 						atl_cot_cripto(criptos, 3);  //chamando a função de atualizar as cotações
 					    mostrar_cots(criptos, 3);   //mostrando as cotações atualizados
 					    escreveArquivo("cliente1.txt", &cliente1, criptos, 3, historico_transacoes1, total_transacoes1);  //escrevendo as cotações no txt
+                        escreveArquivo2("cliente2.txt", &cliente2, criptos, 3, historico_transacoes2, total_transacoes2);  //salva no txt do cliente 2
 				}
 					break;
 				case 0:
