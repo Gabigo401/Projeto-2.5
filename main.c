@@ -502,8 +502,12 @@ void atl_cot_cripto(Cripto criptos[], int qtd){
 	}
 }
 
-void mostrar_cots(){
-
+void mostrar_cots(Cripto criptos[], int qtd){  //acessa a struct cripto e cria uma variavel int chamada qtd
+	int i;  //cria uma variavel int chamada i
+	printf("Cotações:\n");
+	for(i = 0; i < qtd; i++){   //laço de repetição para ler todos os valores da struct
+		printf("%s: R$ %.2f\n", criptos[i].nome, criptos[i].cotacao);  //printf para mostrar todos os valores da struct
+	}
 }
 
 void escreveArquivo(){
