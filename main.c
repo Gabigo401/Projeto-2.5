@@ -3,6 +3,11 @@
 #include <string.h>
 #include <time.h>
 
+typedef struct {  //struct criada para as cotações
+	char nome[20];
+	float cotacao;
+}Cripto;
+
 typedef struct { //struct pro cliente1
     char nome[100];
     long long cpf;
@@ -75,8 +80,12 @@ void VendaCriptoCliente(){
 
 }
 
-void atl_cot_cripto(){
-
+void atl_cot_cripto(Cripto criptos[], int qtd){
+	int i;  //cria uma variavel int chamada i
+	for(i = 0; i<qtd; i++){  //um laço de repetição aonde o i tem que ser igual a 0 e o i menor que a variavel int qtd  e apos isso a variavel i e incrementada, ela percorre todas as qtd de cripto e a variavel i e o indice de cada moeda começando do 0
+		float variar = ((rand() % 1001) / 10000.0f)- 0.05f;  //variavel float chamada variar, no rand ele gera um numero aleatorio entre 0 e 1000 e depois divide esse numero pelo numero 10000.0f, apos isso, o valor resultante da operação anterior e subtraido pelo valor 0.05
+		criptos[i].cotacao *= (1+ variar);  //assim gerando um numero -0.05 e +0.05 em outras palavras entre os valores -5% e +5%. Nessa linha o valor que esta armazenado das tres moedas na struct cotação e multiplicada pelo valor resultanto de toda conta anterior assim gerando uma nova cotação
+	}
 }
 
 void mostrar_cots(){
@@ -96,6 +105,12 @@ int main(){
     Cliente1 cliente1 = {"Luanda Soliz", 34567895734, 2344568, 500.00, 20.00, 100.00, 648.25};  //adicionando informações no cliente1
     Cliente2 cliente2 = {"Lidia Mamani", 23498745690, 2356235, 300.00, 26.00, 487.00, 654.00};  //e no cliente2
 
+    Cripto criptos[3] = {   //adicionado valores para a struct cripto das 3 moedas
+		{"Bitcoin", 150000.0},  //valores pra  bitcoin
+		{"Ethereum", 8000.0},  //valores para etherium
+		{"Ripple", 3.0}   //valores para ripple
+		};  
+  
     long long cpfInput;
     long long senhaInput;  //criando duas variaveis para senha e cpf
     int logado = 0;   //int chamada logad
