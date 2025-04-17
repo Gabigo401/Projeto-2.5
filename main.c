@@ -77,7 +77,7 @@ int main(){
     Cliente2 cliente2 = {"Lidia Mamani", 23498745690, 2356235, 300.00, 26.00, 487.00, 654.00};  //e no cliente2
 
     long long cpfInput;
-	long long senhaInput;  //criando duas variaveis para senha e cpf
+    long long senhaInput;  //criando duas variaveis para senha e cpf
     int logado = 0;   //int chamada logad
     int ClienteAtual =0;  //int para saber qual cliente acessou
     printf("Bem vindo! Faca o login para continuar.\n");
@@ -87,9 +87,9 @@ int main(){
     scanf("%lld",  &senhaInput);  //scanf para pegar a senha e guardar
 
     if(cpfInput == cliente1.cpf && senhaInput == cliente1.senha){  //if para comprar o cpf digitado com o cpf do cliente e comparando a senha tambem
-    	printf("\nLogin foi feito com sucesso!, %s.\n", cliente1.nome);
+    	        printf("\nLogin foi feito com sucesso!, %s.\n", cliente1.nome);
 		printf("Lendo arquivo de cliente...\n");
-        leArquivo("cliente1.txt", &cliente1, historico_transacoes1, &total_transacoes1);  //adicionando a chama da função para ler o arquivo txt
+                leArquivo("cliente1.txt", &cliente1, historico_transacoes1, &total_transacoes1);  //adicionando a chama da função para ler o arquivo txt
 		logado = 1;  //se o login funcionoi a variavel logado vira 1 para mostrar que alguem esta logado
 		ClienteAtual = 1;  //a variavel clienteatual muda para 1 para mostrar que e o cliente1
 	}
@@ -109,16 +109,16 @@ int main(){
 				case 1:
 					if(ClienteAtual == 1){
 						Carteira1(cliente1);  //chamando a função de mostrar carteira do cliente1
-					   escreveArquivo("cliente1.txt", &cliente1, criptos, 3, historico_transacoes1, total_transacoes1);  //chamando a função de escreverarquivo para escrever  tudo em um txt
+					        escreveArquivo("cliente1.txt", &cliente1, criptos, 3, historico_transacoes1, total_transacoes1);  //chamando a função de escreverarquivo para escrever  tudo em um txt
 					}else{
 						Carteira2(cliente2);  //se for o cliente2 esse e chamado
-                        escreveArquivo2("cliente2.txt", &cliente2, criptos, 3, historico_transacoes2, total_transacoes2);  //salvando em outro txt o do cliente2
+                                                escreveArquivo2("cliente2.txt", &cliente2, criptos, 3, historico_transacoes2, total_transacoes2);  //salvando em outro txt o do cliente2
 				}
 					break;
 				case 2:
 					if(ClienteAtual == 1){
 						ExibirExtrato(historico_transacoes1, total_transacoes1);  //exibindo o extrato do cliente1
-					   escreveArquivo("cliente1.txt", &cliente1, criptos, 3, historico_transacoes1, total_transacoes1);  //escrevendo no txt o extrato
+					        escreveArquivo("cliente1.txt", &cliente1, criptos, 3, historico_transacoes1, total_transacoes1);  //escrevendo no txt o extrato
 					}else{
 						ExibirExtrato(historico_transacoes2, total_transacoes2);
 						escreveArquivo2("cliente2.txt", &cliente2, criptos, 3, historico_transacoes2, total_transacoes2);
@@ -154,10 +154,10 @@ int main(){
 					break;
 				case 7:
 					{
-						atl_cot_cripto(criptos, 3);  //chamando a função de atualizar as cotações
+					    atl_cot_cripto(criptos, 3);  //chamando a função de atualizar as cotações
 					    mostrar_cots(criptos, 3);   //mostrando as cotações atualizados
 					    escreveArquivo("cliente1.txt", &cliente1, criptos, 3, historico_transacoes1, total_transacoes1);  //escrevendo as cotações no txt
-                        escreveArquivo2("cliente2.txt", &cliente2, criptos, 3, historico_transacoes2, total_transacoes2);  //salva no txt do cliente 2
+                                            escreveArquivo2("cliente2.txt", &cliente2, criptos, 3, historico_transacoes2, total_transacoes2);  //salva no txt do cliente 2
 				}
 					break;
 				case 0:
