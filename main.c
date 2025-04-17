@@ -38,7 +38,7 @@ void VendaCriptoCliente1(Cliente1 *cliente, Cripto criptos[], transacao historic
 	float tax_venda_ethe = 0.02;  //float mostrando a taxa de venda do etherium
 	float tax_venda_rpl = 0.01;   // float mostrando a taxa de vende do ripple
 	float quantos, quantos_iniciais, valor_recebido;   //float que vai armazenar a quantidade de criptomoedas que deseja vender, a quantidade que foi escolhida antes de passar pela taxação e a quantidade de dinheiro recebido pela venda
-	__int64 senhaInput;    //int que vai guardar a senha pra validação da transação
+	long long senhaInput;    //long long que vai guardar a senha pra validação da transação
 	int escolher;   //int que vai guardar o numero da opção de criptomoeda escolhida
 	printf("\n Escolha a criptomoeda para vender:\n");
 	printf("1- Bitcoin\n");
@@ -69,7 +69,13 @@ void VendaCriptoCliente1(Cliente1 *cliente, Cripto criptos[], transacao historic
 					cliente ->bitcoin -= quantos;   //acessa a struct do cliente e diminui os valores de bitcoin que estão armazenados e diminui pela quantidade que foi digitada para ser vendida
 					cliente ->reais += quantos * criptos[0].cotacao; //acessa o valor de reais que esta na struct do cliente e soma com a  quantidade de moedas que foi escolhida para venda que foi multiplicada pelo valor da cotação da moeda
 				    RegistrarTransacao(historico, total, "Venda", "Bitcoin", quantos); //chamada da função para salvar as operações
-				}else printf("Quantidade desejada e insuficiente.\n");  //mensagem se o valor escolhido para venda for maior que o valor ns struct do cliente
+					printf("Venda realizada com sucesso!\n");
+					printf("Quantidade vendida: %.2f Bitcoins\n", quantos_iniciais);  //mostra a  quantidade vendida se for bitcoin
+					printf("Valor recebido: R$ %.2f\n", valor_recebido);   //mostra o valor recebido pela venda da moeda
+					printf("Taxa cobrada: %.0f%%\n", tax_venda_bit * 100);  //mostra a taxa que foi cobrada pela venda
+				}else {
+					printf("Quantidade desejada e insuficiente.\n");  //mensagem se o valor escolhido para venda for maior que o valor ns struct do cliente
+				}
 				break;
 			case 2:
 				if(quantos <= cliente ->etherium){   //verificação de a quantidade escolhida para venda e menor que a quantidade que esta na struct do cliente
@@ -78,8 +84,14 @@ void VendaCriptoCliente1(Cliente1 *cliente, Cripto criptos[], transacao historic
 					valor_recebido = quantos * criptos[1].cotacao;  //a variavel velorrecebido recebe o valor da variavel quantos que foi multiplicada pela cotação do etherium
 					cliente ->etherium -= quantos;   //acessa os valores de etherium do cliente e  subtrai ela com o valor que foi escolhido para venda
 					cliente ->reais += quantos * criptos[1].cotacao; //acessa o valor de reais do cliente se soma com o valor que foi recebido pela venda que seria a quantidade escolhida para venda multiplicado pela cotação da moeda
-					RegistrarTransacao(historico, total, "Venda", "Bitcoin", quantos);  //chamando para salvar as operações
-				}else printf("Quantidade desejada e insuficiente.\n");
+					RegistrarTransacao(historico, total, "Venda", "Etherium", quantos);  //chamando para salvar as operações
+					printf("Venda feita com sucesso!\n");
+					printf("Quantidade vendida: %.2f Ethereum\n", quantos_iniciais);  //mostra a quantidade venda
+					printf("Valor recebido: R$ %.2f\n", valor_recebido);  //mostra o valor recebido pela venda
+					printf("Taxa cobrada: %.0f%%\n", tax_venda_ethe * 100); //mostra a taxa de venda da moeda
+				}else {
+					printf("Quantidade desejada e insuficiente.\n");
+				}
 				break;
 			case 3:
 				if(quantos <= cliente ->ripple){  //veriffica se a quantidade escolhida para venda e menor que a quantidade que tem no struct do cliente
@@ -88,29 +100,17 @@ void VendaCriptoCliente1(Cliente1 *cliente, Cripto criptos[], transacao historic
 					valor_recebido = quantos * criptos[2].cotacao;   //a variavel valor_recebido recebe o valor resultante da multiplicação entre a variavel quantos e a cotação da moeda escolhida
 					cliente ->ripple -= quantos;  //acessa os valores de ripple do cliente e subtrai ela com o valor que foi escolhido para venda
 					cliente ->reais += quantos * criptos[2].cotacao;   //acessa os valores de reais do cliente e soma com os valores resultante da multiplicação entre a variavel quanto e a cotação da moeda escolhida
-					RegistrarTransacao(historico, total, "Venda", "Bitcoin", quantos);  //chamando para salvar as operações
-				}else printf("Quantidade desejada e insuficiente.\n");  //else se a quantidade escolhida para venda e maior que a armazenada na struct
+					RegistrarTransacao(historico, total, "Venda", "Ripple", quantos);  //chamando para salvar as operações
+					printf("Venda feita com sucesso!\n");
+					printf("Quantidade vendida: %.2f Ripple\n", quantos_iniciais);  //mostra a quantidade escolhida para venda
+					printf("Valor recebido: R$ %.2f\n", valor_recebido);  //mostra o valor recebido pela venda
+					printf("Taxa cobrada: %.0f%%\n", tax_venda_rpl * 100);  //mostra a taxa de venda da moeda
+				}else {
+					printf("Quantidade desejada e insuficiente.\n");  //else se a quantidade escolhida para venda e maior que a armazenada na struct
+				}
 				break;
 			default:
 				printf("Criptomoeda invalida.\n"); //aparece isso se a moeda escolhida não esta cadastrada
-		}
-		if(escolher == 1){  //if da variavel escolha  que mostra um resumo da operação dependendo da moeda escolhida
-            printf("Venda realizada com sucesso!\n");
-            printf("Quantidade vendida: %.2f Bitcoins\n", quantos_iniciais);  //mostra a  quantidade vendida se for bitcoin
-            printf("Valor recebido: R$ %.2f\n", valor_recebido);   //mostra o valor recebido pela venda da moeda
-            printf("Taxa cobrada: %.0f%%\n", tax_venda_bit * 100);  //mostra a taxa que foi cobrada pela venda
-		}
-		else if(escolher == 2){  //if se a escolha for 2
-			printf("Venda feita com sucesso!\n");
-            printf("Quantidade vendida: %.2f Ethereum\n", quantos_iniciais);  //mostra a quantidade venda
-            printf("Valor recebido: R$ %.2f\n", valor_recebido);  //mostra o valor recebido pela venda
-            printf("Taxa cobrada: %.0f%%\n", tax_venda_ethe * 100); //mostra a taxa de venda da moeda
-        }
-		else if(escolher == 3){ 
-			printf("Venda feita com sucesso!\n");
-            printf("Quantidade vendida: %.2f Ripple\n", quantos_iniciais);  //mostra a quantidade escolhida para venda
-            printf("Valor recebido: R$ %.2f\n", valor_recebido);  //mostra o valor recebido pela venda
-            printf("Taxa cobrada: %.0f%%\n", tax_venda_rpl * 100);  //mostra a taxa de venda da moeda
 		}
 	}else {  //else que se mostra se a senha inserida pelo usuario esta errada
 		printf("Senha incorreta, operação cancelada.\n");
@@ -123,7 +123,7 @@ void VendaCriptoCliente2(Cliente2 *cliente, Cripto criptos[], transacao historic
 	float tax_venda_ethe = 0.02;  
 	float tax_venda_rpl = 0.01;   
 	float quantos, quantos_iniciais, valor_recebido;   
-	__int64 senhaInput;    
+	long long senhaInput;    
 	int escolher;   
 	printf("\n Escolha a criptomoeda para vender:\n");
 	printf("1- Bitcoin\n");
@@ -154,7 +154,13 @@ void VendaCriptoCliente2(Cliente2 *cliente, Cripto criptos[], transacao historic
 					cliente ->bitcoin -= quantos;   
 					cliente ->reais += quantos * criptos[0].cotacao; 
 				    RegistrarTransacao(historico, total, "Venda", "Bitcoin", quantos);
-				}else printf("Quantidade desejada e insuficiente.\n"); 
+					printf("Venda realizada com sucesso!\n");
+					printf("Quantidade vendida: %.2f Bitcoins\n", quantos_iniciais);  
+					printf("Valor recebido: R$ %.2f\n", valor_recebido);   
+					printf("Taxa cobrada: %.0f%%\n", tax_venda_bit * 100); 
+				}else {
+					printf("Quantidade desejada e insuficiente.\n"); 
+				}
 				break;
 			case 2:
 				if(quantos <= cliente ->etherium){   
@@ -163,8 +169,14 @@ void VendaCriptoCliente2(Cliente2 *cliente, Cripto criptos[], transacao historic
 					valor_recebido = quantos * criptos[1].cotacao; 
 					cliente ->etherium -= quantos;  
 					cliente ->reais += quantos * criptos[1].cotacao; 
-					RegistrarTransacao(historico, total, "Venda", "Bitcoin", quantos);
-				}else printf("Quantidade desejada e insuficiente.\n");
+					RegistrarTransacao(historico, total, "Venda", "Etherium", quantos);
+					printf("Venda feita com sucesso!\n");
+					printf("Quantidade vendida: %.2f Ethereum\n", quantos_iniciais);  
+					printf("Valor recebido: R$ %.2f\n", valor_recebido); 
+					printf("Taxa cobrada: %.0f%%\n", tax_venda_ethe * 100); 
+				}else {
+					printf("Quantidade desejada e insuficiente.\n");
+				}
 				break;
 			case 3:
 				if(quantos <= cliente ->ripple){ 
@@ -173,29 +185,17 @@ void VendaCriptoCliente2(Cliente2 *cliente, Cripto criptos[], transacao historic
 					valor_recebido = quantos * criptos[2].cotacao;   
 					cliente ->ripple -= quantos;  
 					cliente ->reais += quantos * criptos[2].cotacao;   
-					RegistrarTransacao(historico, total, "Venda", "Bitcoin", quantos);
-				}else printf("Quantidade desejada e insuficiente.\n"); 
+					RegistrarTransacao(historico, total, "Venda", "Ripple", quantos);
+					printf("Venda feita com sucesso!\n");
+					printf("Quantidade vendida: %.2f Ripple\n", quantos_iniciais); 
+					printf("Valor recebido: R$ %.2f\n", valor_recebido); 
+					printf("Taxa cobrada: %.0f%%\n", tax_venda_rpl * 100); 
+				}else {
+					printf("Quantidade desejada e insuficiente.\n"); 
+				}
 				break;
 			default:
 				printf("Criptomoeda invalida.\n"); 
-		}
-		if(escolher == 1){  
-            printf("Venda realizada com sucesso!\n");
-            printf("Quantidade vendida: %.2f Bitcoins\n", quantos_iniciais);  
-            printf("Valor recebido: R$ %.2f\n", valor_recebido);   
-            printf("Taxa cobrada: %.0f%%\n", tax_venda_bit * 100); 
-		}
-		else if(escolher == 2){  
-			printf("Venda feita com sucesso!\n");
-            printf("Quantidade vendida: %.2f Ethereum\n", quantos_iniciais);  
-            printf("Valor recebido: R$ %.2f\n", valor_recebido); 
-            printf("Taxa cobrada: %.0f%%\n", tax_venda_ethe * 100); 
-        }
-		else if(escolher == 3){ 
-			printf("Venda feita com sucesso!\n");
-            printf("Quantidade vendida: %.2f Ripple\n", quantos_iniciais); 
-            printf("Valor recebido: R$ %.2f\n", valor_recebido); 
-            printf("Taxa cobrada: %.0f%%\n", tax_venda_rpl * 100); 
 		}
 	}else {  
 		printf("Senha incorreta, operação cancelada.\n");
