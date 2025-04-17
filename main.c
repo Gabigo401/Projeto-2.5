@@ -3,9 +3,9 @@
 #include <string.h>
 #include <time.h>
 
-typedef struct {   //struct pro cliente1
-    char nome[100]; 
-    long long cpf;   //long long para armazenar o numero de cpf
+typedef struct { //struct pro cliente1
+    char nome[100];
+    long long cpf;
     long long senha;
     float reais;
     float bitcoin;
@@ -15,7 +15,7 @@ typedef struct {   //struct pro cliente1
 
 typedef struct{  //struct pro cliente2
     char nome[100];
-    long long cpf; 
+    long long cpf;
     long long senha;
     float reais; 
     float bitcoin;
