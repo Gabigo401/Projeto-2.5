@@ -45,7 +45,7 @@ void mostrar_cots(){
 }
 
 void escreveArquivo(const char *nome_arquivo, Cliente1 *cliente, Cripto criptos[], int qtdCriptos, transacao historico[], int totalTransacoes){ //crio um ponteiro com uma string constante e um ponteiro para a struct cliente1, um vetor da struct cripto e uma função int para percorrer o vetor sem sair do limite e um vetor pra struct transação junto com um int para o maximo de transações
-    FILE *arquivo = fopen(nome_arquivo, "w"); //criei um ponteiro para o arquivo e abro ele com o fopen e dentro dela dou um nome e a ação desejada, a letra 'W' significa write que seria que eu vou abrir o arquivo e escrever nele
+    FILE *arquivo = fopen(nome_arquivo, "w+"); //criei um ponteiro para o arquivo e abro ele com o fopen e dentro dela dou um nome e a ação desejada, a letra 'W' significa write que seria que eu vou abrir o arquivo e escrever nele
     if (arquivo == NULL) { //um if para confirmar se o arquivo foi aberto
         perror("Erro ao abrir o arquivo");  //mensagem se ocorre um erro na abertura
         return;
@@ -53,10 +53,10 @@ void escreveArquivo(const char *nome_arquivo, Cliente1 *cliente, Cripto criptos[
     fprintf(arquivo, "%s\n", cliente->nome);  //fprint para salvar o nome do cliente
     fprintf(arquivo, "%lld\n", cliente->cpf);  //fprtinf para salvar o cpf
     fprintf(arquivo, "%lld\n", cliente->senha); //fprint para salvar a senha do usuario
-    fprintf(arquivo, "%lf\n", cliente->reais);  //fprint para salvar o saldo em reais
-    fprintf(arquivo, "%lf\n", cliente->bitcoin);  //para salvar os bitcoins que o usuario tem
-    fprintf(arquivo, "%lf\n", cliente->etherium); //salva os etherium que o usuario tem
-    fprintf(arquivo, "%lf\n", cliente->ripple);  //salva os ripples que o cliente tem
+    fprintf(arquivo, "%f\n", cliente->reais);  //fprint para salvar o saldo em reais
+    fprintf(arquivo, "%f\n", cliente->bitcoin);  //para salvar os bitcoins que o usuario tem
+    fprintf(arquivo, "%f\n", cliente->etherium); //salva os etherium que o usuario tem
+    fprintf(arquivo, "%f\n", cliente->ripple);  //salva os ripples que o cliente tem
 
     fprintf(arquivo, "--- COTAÇÕES ATUAIS ---\n");  //aqui eu salvo as cotações  das moedas que o usuario for atualizando ao usar a opção 7
     int i;   //crio um int chamado i
@@ -79,8 +79,8 @@ void escreveArquivo(const char *nome_arquivo, Cliente1 *cliente, Cripto criptos[
     fclose(arquivo);  //aqui o arquivo e fechado apos salvar todas essas informações
 }
 
-void escreveArquivo2(const char *nome_arquivo, Cliente2 *cliente, Cripto criptos[], int qtdCriptos, transacao historico2[], int total_Transacoes2) {
-    FILE *arquivo = fopen(nome_arquivo, "w"); // <- modo correto pra criar e escrever
+void escreveArquivo2(const char *nome_arquivo, Cliente2 *cliente, Cripto criptos[], int qtdCriptos, transacao historico_transacoes2[], int total_transacoes2) {
+    FILE *arquivo = fopen(nome_arquivo, "w+"); // <- modo correto pra criar e escrever
     if (arquivo == NULL) {
         perror("Erro ao abrir o arquivo");
         return;
@@ -88,10 +88,10 @@ void escreveArquivo2(const char *nome_arquivo, Cliente2 *cliente, Cripto criptos
     fprintf(arquivo, "%s\n", cliente->nome);
     fprintf(arquivo, "%lld\n", cliente->cpf);
     fprintf(arquivo, "%lld\n", cliente->senha);
-    fprintf(arquivo, "%lf\n", cliente->reais);
-    fprintf(arquivo, "%lf\n", cliente->bitcoin);
-    fprintf(arquivo, "%lf\n", cliente->etherium);
-    fprintf(arquivo, "%lf\n", cliente->ripple);
+    fprintf(arquivo, "%f\n", cliente->reais);
+    fprintf(arquivo, "%f\n", cliente->bitcoin);
+    fprintf(arquivo, "%f\n", cliente->etherium);
+    fprintf(arquivo, "%f\n", cliente->ripple);
 
     fprintf(arquivo, "--- COTAÇÕES ATUAIS ---\n");
     int i;
@@ -99,16 +99,16 @@ void escreveArquivo2(const char *nome_arquivo, Cliente2 *cliente, Cripto criptos
         fprintf(arquivo, "%s: %.4f\n", criptos[i].nome, criptos[i].cotacao);
     }
     fprintf(arquivo, "===== EXTRATO DE TRANSAÇÕES =====\n");
-    if (total_Transacoes2 == 0) {
+    if (total_transacoes2 == 0) {
         fprintf(arquivo, "Nenhuma transação registrada.\n");
     } else {
     	int i;
-        for (i = 0; i < total_Transacoes2; i++) {
+        for (i = 0; i < total_transacoes2; i++) {
             fprintf(arquivo, "%d. Tipo: %s | Moeda: %s | Quantidade: %.2f\n",
                     i + 1,
-                    historico2[i].tipo,
-                    historico2[i].moeda,
-                    historico2[i].quantidade);
+                    historico_transacoes2[i].tipo,
+                    historico_transacoes2[i].moeda,
+                    historico_transacoes2[i].quantidade);
         }
     }
     fclose(arquivo);
