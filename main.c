@@ -54,6 +54,13 @@ void leArquivo(const char *nome_arquivo, Cliente1 *cliente, transacao historico_
     printf("Erro ao abrir o arquivo %s!\n", nome_arquivo);
     return;
   }
+  fscanf(arquivo, "%s", cliente->nome);   //fscanf para ler o nome que esta salvo no arquivo
+  fscanf(arquivo, "%lld", &cliente->cpf); //fscanf para ler o cpf
+  fscanf(arquivo, "%lld", &cliente->senha);  //para ler a senha
+  fscanf(arquivo, "%f", &cliente->reais);  //o saldo em reais
+  fscanf(arquivo, "%f", &cliente->bitcoin);  //o saldo em bitcoins
+  fscanf(arquivo, "%f", &cliente->etherium); //o saldo em etherium
+  fscanf(arquivo, "%f", &cliente->ripple);  //o saldo em ripple
 }
 
 
