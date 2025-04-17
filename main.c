@@ -133,8 +133,48 @@ void DepositoCliente2(Cliente2 *cliente, transacao historico[], int *total){
 	}
 }
 
-void SaqueCliente(){
+void SaqueCliente1(Cliente1 *cliente, transacao historico[], int *total){   //a função acessa a struct cliente1 como um ponteiro // chamando a struct de transacao para guardar nelas as operações
+    float valor;  //variavel float chamado valor que recebe o valor digitado
+	long long senhaInput;  //variavel long long que recebe a senha digitada
+	printf("Digite o valor do saque desejado:\n");
+	scanf("%f", &valor);  //scanf que le e armazena na variavel de valor o valor digitado
+	
+	printf("Digite a senha para validar o saque:\n");
+	scanf("%lld", &senhaInput); //scanf que le e armazena na variavel de senha a senha digitada
+	
+    if(senhaInput == cliente ->senha){   //if que verifica se  senha recebida e igual ao da struct de cliente1
+        if(valor > 0 && valor <= cliente ->reais){  //if que verifica se o valor e maior que zero e verifica se e  menor que o valor que ja esta armazenado na struct de cliente1, essa comparação e feita usando alguns ponteiros para acessar os valores de 'reais'
+		cliente ->reais -= valor;  //acessa os valores de 'reais' da struct do cliente e faz  o subtração do valor dela com o valor digitado pelo usuario e atualiza ela com os novos valores
+		RegistrarTransacao(historico, total, "Saque", "Reais", valor);  //chamando a função de registrar as transações de todas as operações que foram feitar aqui
+		printf("Saque feito com sucesso!. Saldo atual R$ %.2f\n", cliente -> reais);
+	}else {  //else que mostra se o valor e invalido ou se o valor digitado e maior que o valor guardado na struct cliente1
+		printf("Saldo insuficiente ou valor invalido.");
+	}
+	 }else {  //else que avisa se a senha estiver e errada
+		printf("Senha incorreta, operação cancelada.\n");
+	}
+}
 
+void SaqueCliente2(Cliente2 *cliente, transacao historico[], int *total){
+	float valor;
+	long long senhaInput;
+	printf("Digite o valor do saque desejado: \n");
+	scanf("%f", &valor);
+	
+	printf("Digite a senha para validar o saque:\n");
+	scanf("%lld", &senhaInput);
+	
+	if(senhaInput == cliente ->senha){
+        if(valor > 0 && valor <= cliente -> reais){
+		cliente ->reais -= valor;
+		RegistrarTransacao(historico, total, "Saque", "Reais", valor);
+		printf("Saque feito com sucesso!. Saldo atual R$ %.2f\n", cliente -> reais);
+	}else {
+		printf("Saldo insuficiente ou valor invalido.");
+	}
+	}else {
+		printf("Senha incorreta, operação cancelada.\n");
+	}
 }
 
 void CompraCriptoCliente(){
