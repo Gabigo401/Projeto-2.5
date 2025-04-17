@@ -5,8 +5,8 @@
 
 typedef struct {
     char nome[100];
-    __int64 cpf;
-    __int64 senha;
+    long long cpf;
+    long long senha;
     float reais;
     float bitcoin;
     float etherium;
@@ -15,8 +15,8 @@ typedef struct {
 
 typedef struct{
     char nome[100];
-    __int64 cpf;
-    __int64 senha;
+    long long cpf;
+    long long senha;
     float reais; 
     float bitcoin;
     float etherium;
